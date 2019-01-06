@@ -1,8 +1,15 @@
-﻿@model CheeseMVC.ViewModels.AddCheeseViewModel
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
 
-<h1>Add Cheese</h1>
+@model CheeseMVC.ViewModels.EditCheeseViewModel
 
-<form asp-controller="Cheese" asp-action="Add" method="post">
+@{
+}
+
+<h1>Edit Cheese @Model.Name (id=@Model.ID)</h1>
+
+<form asp-controller="Cheese" asp-action="Edit" method="post">
 
     <div class="form-group">
         <label asp-for="Name"></label>
@@ -20,6 +27,8 @@
         <select asp-for="CategoryID" asp-items="Model.Categories"></select>
     </div>
 
-    <input type="submit" value="Add Cheese" />
+    <input type="hidden" name="ID" value="@Model.ID" />
+
+    <input type="submit" value="Change Cheese" />
 
 </form>

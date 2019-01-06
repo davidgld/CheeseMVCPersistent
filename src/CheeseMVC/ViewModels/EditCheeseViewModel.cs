@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 
 namespace CheeseMVC.ViewModels
 {
-    public class AddCheeseViewModel
+    public class EditCheeseViewModel
     {
+        public int ID { get; set; }
+
         [Required]
         [Display(Name = "Cheese Name")]
         public string Name { get; set; }
@@ -23,9 +25,14 @@ namespace CheeseMVC.ViewModels
 
         public List<SelectListItem> Categories { get; set; }
 
-        public AddCheeseViewModel() { }
+        public EditCheeseViewModel() { }
 
-        public AddCheeseViewModel(IEnumerable<CheeseCategory> categories) {
+        public EditCheeseViewModel(Cheese cheese, IEnumerable<CheeseCategory> categories)
+        {
+            ID = cheese.ID;
+            Name = cheese.Name;
+            Description = cheese.Description;
+            CategoryID = cheese.CategoryID;
 
             Categories = new List<SelectListItem>();
 
@@ -38,25 +45,6 @@ namespace CheeseMVC.ViewModels
                 });
             }
 
-            // <option value="0">Hard</option>
-            /*
-            CheeseTypes.Add(new SelectListItem {
-                Value = ((int) CheeseType.Hard).ToString(),
-                Text = CheeseType.Hard.ToString()
-            });
-
-            CheeseTypes.Add(new SelectListItem
-            {
-                Value = ((int)CheeseType.Soft).ToString(),
-                Text = CheeseType.Soft.ToString()
-            });
-
-            CheeseTypes.Add(new SelectListItem
-            {
-                Value = ((int)CheeseType.Fake).ToString(),
-                Text = CheeseType.Fake.ToString()
-            });
-            */
         }
     }
 }
